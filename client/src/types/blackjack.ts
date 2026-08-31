@@ -1,0 +1,2 @@
+export type Card={rank:string;suit:string};
+export type State={phase:'waiting'|'betting'|'player_turn'|'dealer_turn'|'result';balance:number;bet:number;player:{cards:Card[];score:number;status:string};dealer:{cards:Card[];score:number|null;hidden:boolean;status:string};stats:{handsPlayed:number;wins:number;losses:number;pushes:number;blackjacks:number;totalWagered:number;totalWon:number;totalLost:number};result?:string;payout?:number;canDouble:boolean};
