@@ -1,0 +1,4 @@
+import { useCallback,useEffect,useState } from 'react';
+import type { State } from '../types/blackjack';
+const id='local-table';
+export function useBlackjack(){const [state,setState]=useState<State|null>(null);const [error,setError]=useState('');const call=useCallback(async(action:string,amount?:number)=>{setError('');try{const r=await fetch(`/api/game/${id}/action`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action,amount})});const data=await r.json();if(!r.ok)throw new Error(data.error);setState(data);}catch(e){setError(e instanceof Error?e.message:'Network error');}},[]);useEffect(()=>{fetch(`/api/game/${id}`).then(r=>r.json()).then(setState).catch(()=>setError('Unable to connect to game server'));},[]);return {state,error,placeBet:(n:number)=>call('placeBet',n),hit:()=>call('hit'),stand:()=>call('stand'),doubleDown:()=>call('doubleDown'),newRound:()=>call('newRound')};}
