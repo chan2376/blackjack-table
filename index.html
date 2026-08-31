@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BLACKJACK TABLE — a single-player virtual-chip blackjack game." />
+  <title>BLACKJACK TABLE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LIVE TABLE · VIRTUAL CHIPS</p>
+        <h1>BLACKJACK TABLE</h1>
+      </div>
+      <div class="top-actions">
+        <button id="soundBtn" class="icon-btn" type="button" aria-label="Toggle sound">🔊</button>
+        <button id="rulesBtn" class="icon-btn" type="button" aria-label="Open rules">?</button>
+        <div class="balance"><span>BALANCE</span><strong id="balance">10,000</strong></div>
+      </div>
+    </header>
+
+    <section class="table" aria-label="Blackjack table">
+      <div class="felt">
+        <section class="seat dealer-seat">
+          <p class="label">DEALER</p>
+          <div id="dealerHand" class="hand" aria-label="Dealer hand"></div>
+          <div id="dealerScore" class="score">—</div>
+        </section>
+        <div class="divider"></div>
+        <section class="seat player-seat">
+          <p class="label">PLAYER</p>
+          <div id="playerHand" class="hand" aria-label="Player hand"></div>
+          <div id="playerScore" class="score">—</div>
+        </section>
+        <div id="result" class="result hidden"></div>
+      </div>
+    </section>
+
+    <p id="error" class="error hidden" role="alert"></p>
+
+    <section id="betControls" class="controls">
+      <div class="chip-row" aria-label="Bet amount">
+        <button class="chip" data-bet="10">10</button>
+        <button class="chip" data-bet="25">25</button>
+        <button class="chip" data-bet="50">50</button>
+        <button class="chip selected" data-bet="100">100</button>
+        <button class="chip" data-bet="250">250</button>
+        <button class="chip" data-bet="500">500</button>
+        <button class="chip" data-bet="1000">1,000</button>
+        <input id="betInput" type="number" min="1" max="1000000" step="1" value="100" aria-label="Custom bet" />
+      </div>
+      <div class="bet-display">BET <strong id="currentBet">100</strong></div>
+      <button id="dealBtn" class="primary" type="button">DEAL</button>
+    </section>
+
+    <section id="actionControls" class="controls hidden">
+      <div class="actions">
+        <button id="hitBtn" type="button">HIT</button>
+        <button id="standBtn" type="button">STAND</button>
+        <button id="doubleBtn" type="button">DOUBLE</button>
+      </div>
+    </section>
+
+    <section id="roundControls" class="controls hidden">
+      <button id="newRoundBtn" class="primary" type="button">NEW ROUND</button>
+    </section>
+
+    <aside class="stats" aria-label="Session statistics">
+      <div><strong id="hands">0</strong><span>HANDS</span></div>
+      <div><strong id="wins">0</strong><span>WINS</span></div>
+      <div><strong id="losses">0</strong><span>LOSSES</span></div>
+      <div><strong id="pushes">0</strong><span>PUSHES</span></div>
+      <div><strong id="blackjacks">0</strong><span>BLACKJACKS</span></div>
+    </aside>
+  </main>
+
+  <div id="rulesModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rulesTitle">
+    <div class="modal-box">
+      <button id="closeRules" class="close" type="button" aria-label="Close rules">×</button>
+      <h2 id="rulesTitle">BLACKJACK RULES</h2>
+      <p>• Dealer stands on 17 or higher</p>
+      <p>• Dealer hits on soft 17</p>
+      <p>• Blackjack pays 3:2</p>
+      <p>• Normal win pays 1:1</p>
+      <p>• Push returns your bet</p>
+      <p>• Double Down is available on the initial two cards</p>
+      <p>• Aces count as 1 or 11</p>
+      <button id="closeRulesBottom" class="primary" type="button">CLOSE</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
